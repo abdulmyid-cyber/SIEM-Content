@@ -1,0 +1,27 @@
+title: BRICKSTORM DoH Beaconing from Appliance Interfaces
+id: 8f2b7a22-7a2e-4de0-91df-15f883a51231
+description: Detects suspicious DNS-over-HTTPS (DoH) traffic from vSphere/VAMI/management IPs to public resolvers – tactic observed in BRICKSTORM espionage campaign
+status: experimental
+author: Abdul Rahman(Abdulmyid@gmail.com)
+logsource:
+  product: firewall
+  service: network_connection
+detection:
+  selection:
+    target.port: 443
+    target.url|contains: "dns-query"
+    target.ip|in:
+      - 1.1.1.1
+      - 1.0.0.1
+      - 8.8.8.8
+      - 8.8.4.4
+      - 9.9.9.9
+      - 149.112.112.112
+  condition: selection
+falsepositives:
+  - Legitimate DoH-enabled systems
+level: high
+tags:
+  - attack.command_and_control
+  - attack.t1071.001
+  - threat.brickstorm
