@@ -31,8 +31,11 @@ Each file is a Sigma rule (`.yml`) mapped to a specific **threat, campaign, or T
   - `Suspicious ZIP Archive Decryption via Event 5379.yml`
  
 - Citrix / NetScaler
-
   - `Citrix NetScaler - Multi-request suspicious memory overflow attempt with server errors (CVE-2025-7775).yml`
+
+- RAT / CountLoader → Amatera/PureRAT
+  - `Suspicious SVG attachments with embedded HTML/redirects.yml`
+  - `CHM file execution (hh.exe) — possible follow-on stage.yml`
 
 ---
 
