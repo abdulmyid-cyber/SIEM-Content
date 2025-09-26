@@ -28,7 +28,11 @@ Each file is a Sigma rule (`.yml`) mapped to a specific **threat, campaign, or T
   - `Unauthenticated Cisco ASA-FTD WebVPN Access Attempts (CVE-2025-20333 CVE-2025-20362) - Low Noise.yml`  
 
 - Windows / General
-  - `Suspicious ZIP Archive Decryption via Event 5379.yml`  
+  - `Suspicious ZIP Archive Decryption via Event 5379.yml`
+ 
+- Citrix / NetScaler
+
+  - `Citrix NetScaler - Multi-request suspicious memory overflow attempt with server errors (CVE-2025-7775).yml`
 
 ---
 
