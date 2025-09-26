@@ -1,0 +1,21 @@
+title: Suspicious VM Clone or Snapshot Activity in vCenter
+id: 73e2a5fb-6320-4e22-bb1e-89f1b47117da
+description: Detects unauthorized VM clone/snapshot operations – BRICKSTORM used these to access data and credentials
+status: experimental
+author: Abdul Rahman (abdulmyid@gmail.com
+logsource:
+  product: vmware
+  service: vpxd
+detection:
+  selection:
+    message|contains:
+      - "CloneVM_Task"
+      - "CreateSnapshot_Task"
+  condition: selection
+falsepositives:
+  - Planned VM migrations / backups
+level: high
+tags:
+  - attack.lateral_movement
+  - attack.t1578
+  - threat.brickstorm
