@@ -1,0 +1,39 @@
+title: Suspicious ZIP Archive Decryption Triggering Event 5379
+id: 9c3d9c85-58d7-4e33-bd7e-zip5379-detect
+status: experimental
+description: Detects suspicious archive decryption attempts that trigger Windows Security Event 5379 (Credential Manager credentials were read), often linked with password-protected ZIP/RAR extraction and malware staging (e.g., LockBit 3.0).
+author: ChatGPT
+date: 2025/09/19
+references:
+   https://attack.mitre.org/techniques/T1560/001/
+  - https://learn.microsoft.com/en-us/windows/security/threat-protection/auditing/event-5379
+logsource:
+  product: windows
+  service: security
+  definition: 'Detect suspicious Credential Manager access linked with archive extraction tools'
+detection:
+  selection_event:
+    EventID: 5379
+  selection_process:
+    - ProcessName|endswith:
+        - '\7z.exe'
+        - '\7zFM.exe'
+        - '\WinRAR.exe'
+        - '\explorer.exe'
+  condition: selection_event and selection_process
+fields:
+  - EventID
+  - SubjectUserName
+  - SubjectLogonId
+  - ProcessName
+  - ObjectName
+  - TargetInfo
+falsepositives:
+  - Legitimate archive extraction by users
+  - Software installers packaged as ZIP/RAR
+level: medium
+tags:
+  - attack.defense_evasion
+  - attack.t1560.001
+  - ransomware
+  - detection
