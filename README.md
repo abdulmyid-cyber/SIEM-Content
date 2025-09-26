@@ -1,2 +1,2 @@
 # SIEM-Content
-Zero Day SIgma rules
+Zero Day Sigma rules for early detections
