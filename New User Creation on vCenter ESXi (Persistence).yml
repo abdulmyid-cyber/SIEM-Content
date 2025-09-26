@@ -1,0 +1,21 @@
+title: New Local User Created on vCenter/ESXi Host
+id: 10c94b77-c0c8-4b60-b2da-4ee0f6e41df6
+description: Detects creation of new local accounts in vCenter/ESXi appliances – observed in BRICKSTORM activity
+status: experimental
+author: your-team
+logsource:
+  product: vmware
+  service: vpxd
+detection:
+  selection:
+    message|contains:
+      - "UserAccount.add"
+      - "created user"
+  condition: selection
+falsepositives:
+  - Legitimate new admin accounts
+level: high
+tags:
+  - attack.persistence
+  - attack.t1136
+  - threat.brickstorm
