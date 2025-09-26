@@ -1,0 +1,36 @@
+title: Suspicious SVG Attachment Containing Embedded HTML/Redirect-to-ZIP
+id: 8f3f6b1e-3f2a-4d7b-9c6e-ea2b7f4c5d11
+status: experimental
+description: Detects email attachments with .svg content that contain embedded HTML, script tags, data: URIs, or external links that point to password-protected ZIP/CHM delivery chains. Used to detect phishing lures described in public reporting where SVG acts as HTML to redirect victims to ZIP/CHM payloads. (See linked article.)
+author: Abdul Rahman (abdulmyid@gmail.com)
+references:
+  - https://thehackernews.com/2025/09/researchers-expose-svg-and-purerat.html
+tags:
+  - attack.initial-access
+  - attack.execution
+  - attack.t1105
+  - phishing
+logsource:
+  product: mail
+  service: any
+  category: payload
+detection:
+  selection_svg_ext:
+    attachment_name|endswith: 
+      - ".svg"
+      - ".SVG"
+  selection_svg_content:
+    # Generic patterns to catch SVG files embedding HTML/JS or redirect instructions.
+    # Adjust 'attachment_body' to your gateway field name, or use content inspection signatures.
+    attachment_body|re:
+      - "(?i)<script\b"
+      - "(?i)<iframe\b"
+      - "(?i)data:text/html"
+      - "(?i)xlink:href=.*http"
+      - "(?i)href=.*\\.zip"
+      - "(?i)\\.zip(\\?.*)?$"
+      - "(?i)password[-_ ]?protected"
+  condition: selection_svg_ext and selection_svg_content
+falsepositives:
+  - benign svg files containing inline scripts for legitimate web apps — tune by sender, recipient, and known good senders.
+level: high
