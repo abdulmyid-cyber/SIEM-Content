@@ -36,6 +36,11 @@ Each file is a Sigma rule (`.yml`) mapped to a specific **threat, campaign, or T
 - RAT / CountLoader → Amatera/PureRAT
   - `Suspicious SVG attachments with embedded HTML/redirects.yml`
   - `CHM file execution (hh.exe) — possible follow-on stage.yml`
+ 
+- RAT / Infostealer - Banking 
+  - `Suspicious C2 Communication from Stealer/Banker.yml`
+
+  
 
 ---
 
