@@ -1,0 +1,22 @@
+title: Suspicious iControl REST access to /mgmt from non-management IP
+id: icontrol-2025
+status: experimental
+description: Detect HTTP requests to F5 iControl REST endpoints (/mgmt, /mgmt/tm) from sources outside known management network. Requires whitelist of management IPs.
+author: abdulmyid@gmail.com
+date: 2025-10-15
+logsource:
+  product: webproxy|http
+  service: http
+detection:
+  selection_uri:
+    - '* /mgmt/*'
+    - '* /mgmt/tm/*'
+  suspicious_source:
+    Not:
+      - '10.0.0.0/8'         # replace with your management network
+      - '172.16.0.0/12'
+      - '192.168.0.0/16'
+  condition: selection_uri and suspicious_source
+falsepositives:
+  - External monitoring tools or legitimate automation hitting API from known CI. Use whitelist and check user-agent.
+level: high
