@@ -42,7 +42,11 @@ Each file is a Sigma rule (`.yml`) mapped to a specific **threat, campaign, or T
   - `Suspicious C2 Communication from Stealer/Banker.yml`
 
 - F5 / K000154696: F5 Security Incident  
-  - `Suspicious C2 Communication from Stealer/Banker.yml`
+ - `F5 Detect config -archive download patterns.yml`
+ - `F5 Detect iControl REST calls to Mgmt IP.yml`
+ - `F5 HTTP POST with high-entropy - base64-encoded body to management endpoint.yml`
+ - `F5 Suspicious tmsh or f5 CLI usage outside authorized admin times.yml`
+
   
 
 ---
