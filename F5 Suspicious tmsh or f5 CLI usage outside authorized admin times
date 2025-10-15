@@ -1,0 +1,20 @@
+title: Suspicious tmsh or f5 CLI usage outside authorized admin times
+id: tmsh-2025
+status: experimental
+description: Detect invocation of tmsh/tmm scripts from unusual accounts or outside normal working hours.
+author: abdulmyid@gmail.com
+date: 2025-10-15
+logsource:
+  product: linux|sysmon|endpoint
+detection:
+  selection:
+    process_name:
+      - tmsh
+      - tmm
+    user_not_in_allowed:
+      - 'root'
+      - 'f5admin'
+  condition: selection
+falsepositives:
+  - Legitimate admin jobs. Correlate with scheduled maintenance windows and jump-host IPs.
+level: medium
