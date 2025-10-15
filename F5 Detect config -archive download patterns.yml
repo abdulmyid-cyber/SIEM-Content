@@ -1,0 +1,22 @@
+title: Config or archive download via HTTP from BIG-IP management endpoint
+id: configdownload-2025
+status: experimental
+description: Detect large HTTP responses from endpoints containing keywords like 'config', 'backup', 'ucs', 'tar', 'zip', '.conf' that may indicate config export.
+author: abdulmyid@gmail.com
+date: 2025-10-15
+logsource:
+  product: webproxy|http
+detection:
+  selection:
+    response_size: '>50000'   # bytes; tune per environment
+    url|contains:
+      - 'ucs'
+      - 'backup'
+      - 'config'
+      - '.tar'
+      - '.zip'
+      - '.tgz'
+  condition: selection
+falsepositives:
+  - Legitimate backup downloads. Correlate with scheduled backups or known automation user-agents and timestamps.
+level: high
