@@ -1,4 +1,4 @@
-title: HTTP POST with high-entropy - base64-encoded body to management endpoint
+title: HTTP POST with high-entropy - base64-encoded body to management endpoint  F5 / K000154696: F5 Security Incident  
 id: 3c50b9f7-base64post-2025
 status: experimental
 description: Detect HTTP POST requests whose body contains long base64 content (common in webshell uploads or staged exfil).
