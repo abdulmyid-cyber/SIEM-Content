@@ -1,0 +1,19 @@
+title: HTTP POST with high-entropy - base64-encoded body to management endpoint
+id: 3c50b9f7-base64post-2025
+status: experimental
+description: Detect HTTP POST requests whose body contains long base64 content (common in webshell uploads or staged exfil).
+author: abdulmyid@gmail.com
+date: 2025-10-15
+logsource:
+  product: webproxy|http
+detection:
+  selection:
+    http.request.method: POST
+    http.request.body|contains_regexp: '[A-Za-z0-9+/]{200,}={0,2}' 
+    url|contains:
+      - '/mgmt'
+      - '/shared'
+  condition: selection
+falsepositives:
+  - Legitimate encoded payloads (API tokens, multipart uploads). Reduce noise by requiring long base64 blocks (>200 chars) and unusual endpoints.
+level: medium
