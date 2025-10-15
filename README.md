@@ -3,6 +3,7 @@ Zero Day Sigma rules for early detections
 
 https://medium.com/@abdul.myid/detecting-malicious-zip-archive-decryption-via-event-5379-8af2c2194d47
 https://medium.com/@abdul.myid/sigma-rule-unauthenticated-access-attempts-to-cisco-asa-ftd-webvpn-noise-reduced-f570f89f9403
+https://medium.com/p/774630c1fc29
 
 # 🛡️ Sigma Rules for Zero-Day & Emerging Threats  
 
@@ -40,6 +41,8 @@ Each file is a Sigma rule (`.yml`) mapped to a specific **threat, campaign, or T
 - RAT / Infostealer - Banking 
   - `Suspicious C2 Communication from Stealer/Banker.yml`
 
+- F5 / K000154696: F5 Security Incident  
+  - `Suspicious C2 Communication from Stealer/Banker.yml`
   
 
 ---
